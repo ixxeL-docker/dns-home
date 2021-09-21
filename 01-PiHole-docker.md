@@ -1,5 +1,7 @@
 # 01 - PiHole docker
 
+PiHole is a DNS server that subscribes to blocklists to block advertising and tracking services at the network level.
+
 Using PiHole as a DNS for home is easy. Recommended way is docker compose.
 
 Official doc :
