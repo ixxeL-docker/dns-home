@@ -55,7 +55,7 @@ services:
   cloudflared:
     container_name: cloudflared
     restart: unless-stopped
-    image: cloudflare/cloudflared:latest
+    image: cloudflare/cloudflared
     command: proxy-dns
     environment:
       - "TUNNEL_DNS_UPSTREAM=https://1.1.1.1/dns-query,https://1.0.0.1/dns-query,https://9.9.9.9/dns-query,https://149.112.112.9/dns-query"
@@ -139,7 +139,7 @@ services:
   cloudflared:
     container_name: cloudflared
     restart: unless-stopped
-    image: cloudflare/cloudflared:latest
+    image: cloudflare/cloudflared
     command: proxy-dns
     environment:
       - "TUNNEL_DNS_UPSTREAM=https://1.1.1.1/dns-query,https://1.0.0.1/dns-query,https://9.9.9.9/dns-query,https://149.112.112.9/dns-query"
