@@ -50,6 +50,7 @@ services:
 ### Block lists
 
 - https://firebog.net/
+- https://gist.github.com/michaelx/316dc4882f125a8325150e4e2fa9edd6
 
 URLs to use for black listing :
 - https://adaway.org/hosts.txt
