@@ -127,7 +127,15 @@ http {
   }
   server {
     server_name pihole.fredcorp.com;
+    listen 80;
+    listen [::]:80;
+
+    return 301 https://$host$request_uri;
+  }
+  server {
+    server_name pihole.fredcorp.com;
     listen 443 ssl;
+    listen [::]:443 ssl;
 
     ssl_certificate /etc/ssl/private/server.crt;
     ssl_certificate_key /etc/ssl/private/private.key;
@@ -138,5 +146,7 @@ http {
   }
 }
 ```
+
+The first `server`section is used to force HTTPS redirection when querying plain HTTP.
 
 In Pihole, set a DNS A record to your VM hosting your containers pointing to your `VIRTUAL_HOST` and all is set and ok for usage.
