@@ -74,23 +74,17 @@ services:
     environment:
       - "TZ=Europe/Berlin"
       - "WEBPASSWORD=admin"
-
       # Internal IP of the cloudflared container
       - "DNS1=172.30.9.2#5053"
-
       # Explicitly disable a second DNS server, otherwise Pi-hole uses Google
       - "DNS2=no"
-
       # Listen on all interfaces and permit all origins
       # This allows Pihole to work in this setup and when answering across VLANS,
       # but do not expose pi-hole to the internet!
       - "DNSMASQ_LISTENING=all"
-
-    # Persist data and custom configuration to the host's storage
     volumes:
       - '/mnt/app-data/pihole/config:/etc/pihole/'
       - '/mnt/app-data/pihole/dnsmasq:/etc/dnsmasq.d/'
-
     # 1. Join the internal network so Pi-hole can talk to cloudflared
     # 2. Join the public network so it's reachable by systems on our LAN
     networks:
