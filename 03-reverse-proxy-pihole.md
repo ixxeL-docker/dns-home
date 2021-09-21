@@ -139,3 +139,4 @@ http {
 }
 ```
 
+In Pihole, set a DNS A record to your VM hosting your containers pointing to your `VIRTUAL_HOST` and all is set and ok for usage.
