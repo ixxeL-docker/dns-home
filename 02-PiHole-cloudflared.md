@@ -112,3 +112,11 @@ networks:
 Another option is to skip using the `internal` network and instead directly attach cloudflared to our real network. By doing this, we gain the ability to bypass Pi-hole if desired and still have the benefits of DNS over HTTPS. We also get access to the Prometheus metrics published by cloudflared.
 
 We need to make some changes to the configuration for this setup to work.
+
+### Cloudflare LAN IP
+
+With the internal network removed, we need to bring cloudflared onto the real network priv_lan and assign it the IP address 192.168.0.101
+
+### Permissions
+
+If the goal is to make the cloudflared DNS service available to the LAN, we want it on the standard port 53. The problem is the cloudflare/cloudflared Docker image doesn’t run as root so it won’t have permission to bind to a privileged port (i.e. < 1024). We can fix this with a sysctl option `net.ipv4.ip_unprivileged_port_start=53`
