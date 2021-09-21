@@ -72,7 +72,7 @@ services:
     restart: unless-stopped
     image: pihole/pihole:latest
     environment:
-      - "TZ=Europe/Berlin"
+      - "TZ=Europe/Paris"
       - "WEBPASSWORD=admin"
       # Internal IP of the cloudflared container
       - "DNS1=172.30.9.2#5053"
@@ -157,7 +157,7 @@ services:
     restart: unless-stopped
     image: pihole/pihole:latest
     environment:
-      - "TZ=Europe/Berlin"
+      - "TZ=Europe/Paris"
       - "DNS1=192.168.0.100#53"
       - "DNS2=no"
       - "DNSMASQ_LISTENING=all"
