@@ -11,3 +11,11 @@ When setting-up Pi-hole, it needs to be configured with the DNS servers it will 
 With `macvlan`, Docker can create a new network that generates MAC addresses for containers and lets them have routable IPs on our LAN. If we wanted to, we could have multiple Pi-hole instances running on the same machine, each with its own IP listening on port 53.
 
 In the examples to follow, we’ll say our real network is `192.168.0.0/24` and our router is `192.168.0.1`. We can inform Docker of this topology in a network called `priv_lan` that the host is connected to on interface `eth0`.
+
+To create manually the docker network, use this command :
+```bash
+docker network create -d macvlan \
+  --subnet=192.168.0.0/24 \
+  --gateway=192.168.0.1 \
+  -o parent=eth0 priv_lan
+```
