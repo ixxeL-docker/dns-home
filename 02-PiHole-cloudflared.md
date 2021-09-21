@@ -133,3 +133,45 @@ The Prometheus metrics HTTP server apparently has a default behaviour of randoml
 - Point Pi-hole to the new IP of cloudflared
 - Remove the internal network
 
+```yaml
+version: "3.6"
+
+services:
+  cloudflared:
+    container_name: cloudflared
+    restart: unless-stopped
+    image: cloudflare/cloudflared
+    command: proxy-dns
+    environment:
+      - "TUNNEL_DNS_UPSTREAM=https://1.1.1.1/dns-query,https://1.0.0.1/dns-query,https://9.9.9.9/dns-query,https://149.112.112.9/dns-query"
+      - "TUNNEL_METRICS=0.0.0.0:49312"
+      - "TUNNEL_DNS_ADDRESS=0.0.0.0"
+      - "TUNNEL_DNS_PORT=53"
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=53
+    networks:
+      priv_lan:
+        ipv4_address: 10.65.2.14
+
+  pihole:
+    container_name: pihole
+    restart: unless-stopped
+    image: pihole/pihole
+    environment:
+      - "TZ=Europe/Berlin"
+      - "DNS1=10.65.2.14#53"
+      - "DNS2=no"
+      - "DNSMASQ_LISTENING=all"
+      - "WEBPASSWORD=admin"
+    volumes:
+      - '/mnt/app-data/pihole/config:/etc/pihole/'
+      - '/mnt/app-data/pihole/dnsmasq:/etc/dnsmasq.d/'
+    networks:
+      priv_lan:
+        ipv4_address: 10.65.2.4
+
+networks:
+  priv_lan:
+    external:
+      name: priv_lan
+```
