@@ -32,6 +32,5 @@ networks:
     ipam:
       config:
         - subnet: 192.168.0.0/24
-        - ip_range: 192.168.0.96/28
         - gateway: 192.168.0.1
 ```
