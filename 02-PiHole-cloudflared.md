@@ -55,7 +55,7 @@ services:
   cloudflared:
     container_name: cloudflared
     restart: unless-stopped
-    image: cloudflare/cloudflared
+    image: cloudflare/cloudflared:latest
     command: proxy-dns
     environment:
       - "TUNNEL_DNS_UPSTREAM=https://1.1.1.1/dns-query,https://1.0.0.1/dns-query,https://9.9.9.9/dns-query,https://149.112.112.9/dns-query"
@@ -70,7 +70,7 @@ services:
   pihole:
     container_name: pihole
     restart: unless-stopped
-    image: pihole/pihole
+    image: pihole/pihole:latest
     environment:
       - "TZ=Europe/Berlin"
       - "WEBPASSWORD=admin"
@@ -135,12 +135,11 @@ The Prometheus metrics HTTP server apparently has a default behaviour of randoml
 
 ```yaml
 version: "3.6"
-
 services:
   cloudflared:
     container_name: cloudflared
     restart: unless-stopped
-    image: cloudflare/cloudflared
+    image: cloudflare/cloudflared:latest
     command: proxy-dns
     environment:
       - "TUNNEL_DNS_UPSTREAM=https://1.1.1.1/dns-query,https://1.0.0.1/dns-query,https://9.9.9.9/dns-query,https://149.112.112.9/dns-query"
@@ -156,7 +155,7 @@ services:
   pihole:
     container_name: pihole
     restart: unless-stopped
-    image: pihole/pihole
+    image: pihole/pihole:latest
     environment:
       - "TZ=Europe/Berlin"
       - "DNS1=10.65.2.14#53"
