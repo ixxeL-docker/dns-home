@@ -1,4 +1,4 @@
-# 02 - PiHole feat Cloudflared
+# 02 - DNS over TLS : PiHole feat Cloudflared
 
 links :
 - https://mroach.com/2020/08/pi-hole-and-cloudflared-with-docker/
