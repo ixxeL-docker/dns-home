@@ -65,7 +65,7 @@ services:
       - "TUNNEL_DNS_ADDRESS=0.0.0.0"
     networks:
       internal:
-        ipv4_address: 172.30.9.2
+        ipv4_address: 172.30.10.2
 
   pihole:
     container_name: pihole
@@ -89,21 +89,18 @@ services:
     # 2. Join the public network so it's reachable by systems on our LAN
     networks:
       internal:
-        ipv4_address: 172.30.9.3
+        ipv4_address: 172.30.10.3
       priv_lan:
-        ipv4_address: 10.65.2.4
-
+        ipv4_address: 192.168.0.100
     # Starts cloudflard before Pi-hole
     depends_on:
       - cloudflared
 
 networks:
-  # Create the internal network
   internal:
     ipam:
       config:
         - subnet: 172.30.9.0/29
-
   # The priv_lan network is already setup, so it is an 'external' network
   priv_lan:
     external:
