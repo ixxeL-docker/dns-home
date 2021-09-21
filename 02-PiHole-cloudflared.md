@@ -51,24 +51,18 @@ Pi-hole is configured to use the internal cloudflared as the exclusive DNS serve
 
 ```yaml
 version: "3.6"
-
 services:
   cloudflared:
     container_name: cloudflared
-    # Restart on crashes and on reboots
     restart: unless-stopped
     image: cloudflare/cloudflared
     command: proxy-dns
     environment:
       - "TUNNEL_DNS_UPSTREAM=https://1.1.1.1/dns-query,https://1.0.0.1/dns-query,https://9.9.9.9/dns-query,https://149.112.112.9/dns-query"
-
       # Listen on an unprivileged port
       - "TUNNEL_DNS_PORT=5053"
-
       # Listen on all interfaces
       - "TUNNEL_DNS_ADDRESS=0.0.0.0"
-
-    # Attach cloudflared only to the private network
     networks:
       internal:
         ipv4_address: 172.30.9.2
