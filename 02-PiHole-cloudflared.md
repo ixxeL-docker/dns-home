@@ -106,3 +106,5 @@ networks:
     external:
       name: priv_lan
 ```
+
+## Option 2: Attach cloudflared to the LAN
