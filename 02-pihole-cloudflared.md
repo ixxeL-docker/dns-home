@@ -85,6 +85,7 @@ services:
       # This allows Pihole to work in this setup and when answering across VLANS,
       # but do not expose pi-hole to the internet!
       - "DNSMASQ_LISTENING=all"
+      - "VIRTUAL_HOST=pihole.example.com"
     volumes:
       - './pihole-data:/etc/pihole/'
       - './pihole-dnsmasq:/etc/dnsmasq.d/'
@@ -165,6 +166,7 @@ services:
       - "DNS2=no"
       - "DNSMASQ_LISTENING=all"
       - "WEBPASSWORD=admin"
+      - "VIRTUAL_HOST=pihole.example.com"
     volumes:
       - './pihole-data:/etc/pihole/'
       - './pihole-dnsmasq:/etc/dnsmasq.d/'
