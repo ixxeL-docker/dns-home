@@ -124,3 +124,12 @@ If the goal is to make the cloudflared DNS service available to the LAN, we want
 ### Prometheus metrics
 
 The Prometheus metrics HTTP server apparently has a default behaviour of randomly generating a port to listen on. This is not helpful, so we can fix that by setting an environment variable `TUNNEL_METRICS=0.0.0.0:49312` to bind to all interfaces on port 49312
+
+### Recap
+
+- Assign an IP on our priv_lan to cloudflared
+- Grant cloudflared permission to bind to a privileged port
+- Configure cloudflared’s Prometheus metrics (optional)
+- Point Pi-hole to the new IP of cloudflared
+- Remove the internal network
+
