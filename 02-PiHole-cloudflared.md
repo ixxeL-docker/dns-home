@@ -174,3 +174,52 @@ networks:
     external:
       name: priv_lan
 ```
+
+Here is the version with embedded macvlan network :
+
+```yaml
+version: "2.2"
+services:
+  cloudflared:
+    container_name: cloudflared
+    restart: unless-stopped
+    image: cloudflare/cloudflared:2021.9.1-amd64
+    command: proxy-dns
+    environment:
+      - "TUNNEL_DNS_UPSTREAM=https://1.1.1.1/dns-query,https://1.0.0.1/dns-query,https://9.9.9.9/dns-query,https://149.112.112.9/dns-query"
+      - "TUNNEL_METRICS=0.0.0.0:49312"
+      - "TUNNEL_DNS_ADDRESS=0.0.0.0"
+      - "TUNNEL_DNS_PORT=53"
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=53
+    networks:
+      priv_lan:
+        ipv4_address: 192.168.0.101
+
+  pihole:
+    container_name: pihole
+    restart: unless-stopped
+    image: pihole/pihole:latest
+    environment:
+      - "TZ=Europe/Paris"
+      - "DNS1=192.168.0.101#53"
+      - "DNS2=no"
+      - "DNSMASQ_LISTENING=all"
+      - "WEBPASSWORD=admin"
+    volumes:
+      - './pihole-data:/etc/pihole/'
+      - './pihole-dnsmasq:/etc/dnsmasq.d/'
+    networks:
+      priv_lan:
+        ipv4_address: 192.168.0.100
+
+networks:
+ priv_lan:
+   driver: macvlan
+   driver_opts:
+     parent: eth0
+   ipam:
+     config:
+       - subnet: 192.168.0.0/24
+         gateway: 192.168.0.1
+```
