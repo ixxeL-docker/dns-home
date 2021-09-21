@@ -108,3 +108,7 @@ networks:
 ```
 
 ## Option 2: Attach cloudflared to the LAN
+
+Another option is to skip using the internal network and instead directly attach cloudflared to our real network. By doing this, we gain the ability to bypass Pi-hole if desired and still have the benefits of DNS over HTTPS. We also get access to the Prometheus metrics published by cloudflared.
+
+We need to make some changes to the configuration for this setup to work.
