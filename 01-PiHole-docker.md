@@ -47,6 +47,10 @@ services:
         ipv4_address: 172.16.0.100
 ```
 
+### Block lists
+
+- https://firebog.net/
+
 URLs to use for black listing :
 - https://adaway.org/hosts.txt
 - https://v.firebog.net/hosts/AdguardDNS.txt
