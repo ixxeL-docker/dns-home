@@ -32,7 +32,7 @@ networks:
     ipam:
       config:
         - subnet: 192.168.0.0/24
-        - gateway: 192.168.0.1
+          gateway: 192.168.0.1
 ```
 
 ## Option 1: Hidden cloudflared
