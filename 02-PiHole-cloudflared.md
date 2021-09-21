@@ -150,7 +150,7 @@ services:
       - net.ipv4.ip_unprivileged_port_start=53
     networks:
       priv_lan:
-        ipv4_address: 10.65.2.14
+        ipv4_address: 192.168.0.101
 
   pihole:
     container_name: pihole
@@ -158,7 +158,7 @@ services:
     image: pihole/pihole:latest
     environment:
       - "TZ=Europe/Berlin"
-      - "DNS1=10.65.2.14#53"
+      - "DNS1=192.168.0.100#53"
       - "DNS2=no"
       - "DNSMASQ_LISTENING=all"
       - "WEBPASSWORD=admin"
@@ -167,7 +167,7 @@ services:
       - '/mnt/app-data/pihole/dnsmasq:/etc/dnsmasq.d/'
     networks:
       priv_lan:
-        ipv4_address: 10.65.2.4
+        ipv4_address: 192.168.0.100
 
 networks:
   priv_lan:
