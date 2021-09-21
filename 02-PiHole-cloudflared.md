@@ -13,7 +13,7 @@ With `macvlan`, Docker can create a new network that generates MAC addresses for
 In the examples to follow, we’ll say our real network is `192.168.0.0/24` and our router is `192.168.0.1`. We can inform Docker of this topology in a network called `priv_lan` that the host is connected to on interface `eth0`.
 
 To create manually the docker network, use this command :
-```bash
+```shell
 docker network create -d macvlan \
                       --subnet=192.168.0.0/24 \
                       --gateway=192.168.0.1 \
