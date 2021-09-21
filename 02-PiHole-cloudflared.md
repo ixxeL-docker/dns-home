@@ -15,7 +15,7 @@ In the examples to follow, we’ll say our real network is `192.168.0.0/24` and 
 To create manually the docker network, use this command :
 ```bash
 docker network create -d macvlan \
-  --subnet=192.168.0.0/24 \
-  --gateway=192.168.0.1 \
-  -o parent=eth0 priv_lan
+                      --subnet=192.168.0.0/24 \
+                      --gateway=192.168.0.1 \
+                      -o parent=eth0 priv_lan
 ```
