@@ -2,6 +2,11 @@
 
 Using PiHole as a DNS for home is easy. Recommended way is docker compose.
 
+Official doc :
+- https://github.com/pi-hole/docker-pi-hole
+
+Your PiHole instance will be accessible @ http://<ip-address>/admin
+
 ```yaml
 version: '3.6'
 networks:
@@ -21,8 +26,10 @@ services:
       - 80:80/tcp
     environment:
       TZ: 'Europe/Paris'
-      VIRTUAL_HOST: pihole.fredcorp.com
-      WEBPASSWORD: 'fred'
+      VIRTUAL_HOST: pihole.example.com
+      WEBPASSWORD: 'password'
+      DNS1: '1.1.1.1'
+      DNS2: '1.0.0.1'
     volumes:
       - ./datapihole:/etc/pihole/
       - ./datadnsmasqd:/etc/dnsmasq.d/
