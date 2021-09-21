@@ -5,7 +5,7 @@ Using PiHole as a DNS for home is easy. Recommended way is docker compose.
 Official doc :
 - https://github.com/pi-hole/docker-pi-hole
 
-Your PiHole instance will be accessible @ http://<ip-address>/admin
+Your PiHole instance will be accessible @ `http://<ip-address>/admin`
 
 ```yaml
 version: '3.6'
