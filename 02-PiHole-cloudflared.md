@@ -83,8 +83,8 @@ services:
       # but do not expose pi-hole to the internet!
       - "DNSMASQ_LISTENING=all"
     volumes:
-      - '/mnt/app-data/pihole/config:/etc/pihole/'
-      - '/mnt/app-data/pihole/dnsmasq:/etc/dnsmasq.d/'
+      - './pihole-data:/etc/pihole/'
+      - './pihole-dnsmasq:/etc/dnsmasq.d/'
     # 1. Join the internal network so Pi-hole can talk to cloudflared
     # 2. Join the public network so it's reachable by systems on our LAN
     networks:
@@ -163,8 +163,8 @@ services:
       - "DNSMASQ_LISTENING=all"
       - "WEBPASSWORD=admin"
     volumes:
-      - '/mnt/app-data/pihole/config:/etc/pihole/'
-      - '/mnt/app-data/pihole/dnsmasq:/etc/dnsmasq.d/'
+      - './pihole-data:/etc/pihole/'
+      - './pihole-dnsmasq:/etc/dnsmasq.d/'
     networks:
       priv_lan:
         ipv4_address: 192.168.0.100
