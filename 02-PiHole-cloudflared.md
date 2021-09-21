@@ -19,3 +19,19 @@ docker network create -d macvlan \
                       --gateway=192.168.0.1 \
                       -o parent=eth0 priv_lan
 ```
+ 
+ You can also create this in docker-compose file, but the `gateway` parameter is only available for docker-compose version 2.x.
+ 
+ ```yaml
+version: "2"
+networks:
+  priv_lan:
+    driver: macvlan
+    driver_opts: 
+      parent: eth0
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+        - ip_range: 192.168.0.96/28
+        - gateway: 192.168.0.1
+```
