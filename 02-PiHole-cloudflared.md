@@ -1,5 +1,8 @@
 # 02 - PiHole feat Cloudflared
 
+links :
+- https://mroach.com/2020/08/pi-hole-and-cloudflared-with-docker/
+
 cloudflared provides another type of security with DNS over HTTPS. Traditional DNS is insecure and requests can easily be spied on or modified. DNS over HTTPS prevents this by doing what it sounds like: sending your DNS requests over a secure HTTPS connection. Since few devices support DoH, cloudflared acts as a proxy between traditional DNS requests and DNS over HTTPS.
 
 When setting-up Pi-hole, it needs to be configured with the DNS servers it will use to resolve non-blocked requests. By default this is using Google DNS. We would rather not give more data to Google, and we want to use DoH. So, we’ll configure Pi-hole to direct all requests to our running instance of cloudflared.
