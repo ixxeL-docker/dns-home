@@ -211,6 +211,7 @@ services:
       - "DNS2=no"
       - "DNSMASQ_LISTENING=all"
       - "WEBPASSWORD=admin"
+      - "VIRTUAL_HOST=pihole.example.com"
     volumes:
       - './pihole-data:/etc/pihole/'
       - './pihole-dnsmasq:/etc/dnsmasq.d/'
