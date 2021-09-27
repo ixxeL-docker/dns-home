@@ -1,0 +1,39 @@
+version: '3.8'
+services:
+  adguard-home:
+    container_name: adguard
+    image: adguard/adguardhome
+    restart: unless-stopped
+    hostname: adguard.fredcorp.com
+    environment:
+      - TZ=Europe/Paris
+    volumes:
+      - './work:/opt/adguardhome/work'
+      - './conf:/opt/adguardhome/conf'
+    ports:
+      - 53/tcp
+      - 53/udp
+      #- 67/udp
+      #- 68/tcp
+      #- 68/udp
+      #- 80/tcp
+      - 443/tcp # DoH + WEB GUI
+      - 784/udp # DoQ (QUIC)
+      - 853/tcp # DoT
+      #- 3000/tcp # First boot admin panel
+    networks:
+      priv_lan:
+        ipv4_address: 192.168.0.200
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+
+networks:
+ priv_lan:
+   driver: macvlan
+   driver_opts: 
+     parent: eth0
+   ipam:
+     config:
+       - subnet: 192.168.0.0/24
+         gateway: 192.168.0.1
